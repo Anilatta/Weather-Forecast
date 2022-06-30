@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Weather application</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link href="src/styles.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="weather-app">
+        <form class="search-form" id="search-form">
+          <div class="row">
+              <div class="col-3">
+                  <input
+                    type="submit"
+                    value="Search"
+                    class="form-control btn btn-warning shadow-sm w-100"
+                  />
+                </div>
+            <div class="col-6">
+              <input
+                type="search"
+                placeholder="Enter the city"
+                autofocus
+                autocomplete="off"
+                id="enter"
+                class="form-control shadow-sm"
+              />
+            </div>
+            
+              <div class="col-3">
+                <button
+                  class="btn btn-success "
+                  id="current-location"
+                >
+                Current location
+              </button>
+          </div>
+        </form>
+      </div>
+        <h1 id="citySearch"></h1>
+
+        <h2>
+          Now
+          <span id="nowTemp"> </span>
+                  </h2>
+
+        <div class="row">
+          <div class="col-4">
+            <div id="dayTime">⏲12.42</div>
+            <div class="todayDate">📅<span id="todayDate">19/06</span></div>
+            <div id="outside"></div>
+          </div>
+          <div class="col-6">
+            <div id="humidity">Humidity: </div>
+            <div class="col-12">
+              <div class="air" id="air">Sky: </div>
+              <div class="col-12">
+                <div id="wind">Wind: </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+
+          <div class="row">
+            <div class="col-sm-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Friday <br />
+                    📅03/06
+                  </h5>
+                  <p class="card-text">
+                    27°/14°C
+                    <br />
+                    <img
+                      src="https://img.icons8.com/color/48/undefined/chance-of-storm.png"
+                    />
+                  </p>
+                  <a href="#" class="btn btn-primary">More Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Saturday<br />
+                    📅04/06
+                  </h5>
+                  <p class="card-text">
+                    27°/15°C <br />
+
+                    <img
+                      src="https://img.icons8.com/color/48/undefined/chance-of-storm.png"
+                    />
+                  </p>
+                  <a href="#" class="btn btn-primary">More Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Sunday<br />
+                    📅05/06
+                  </h5>
+                  <p class="card-text">
+                    23°/14°C<br /><img
+                      src="https://img.icons8.com/emoji/48/undefined/sun-behind-rain-cloud.png"
+                    />
+                  </p>
+
+                  <a href="#" class="btn btn-primary">More Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Monday<br />
+                    📅06/06
+                  </h5>
+                  <p class="card-text">
+                    20°/12°C <br />
+                    <img
+                      src="https://img.icons8.com/doodle/48/undefined/rain--v1.png"
+                    />
+                  </p>
+                  <a href="#" class="btn btn-primary">More Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Tuesday<br />
+                    📅07/06
+                  </h5>
+                  <p class="card-text">
+                    20°/12°C <br />
+                    <img
+                      src="https://img.icons8.com/doodle/48/undefined/rain--v1.png"
+                    />
+                  </p>
+                  <a href="#" class="btn btn-primary">More Details</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    Wednesday<br />
+                    📅08/06
+                  </h5>
+                  <p class="card-text">
+                    22°/14°C <br />
+                    <img
+                      src="https://img.icons8.com/doodle/48/undefined/rain--v1.png"
+                    />
+                  </p>
+                  <a href="#" class="btn btn-primary">More Details</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="src/index.js"></script>
+  </body>
+</html>

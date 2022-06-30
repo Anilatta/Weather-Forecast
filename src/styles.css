@@ -1,0 +1,47 @@
+h1,
+h2 {
+  color: #9818d6;
+  font-family: "Noto Sans JP", sans-serif;
+  text-shadow: 1px 0 1px #000;
+}
+h1 {
+  font-weight: 900;
+  text-transform: capitalize;
+}
+.air {
+  text-transform: capitalize;
+}
+.search-form {
+  margin-bottom: 20px;
+}
+
+.units {
+  position: relative;
+  font-weight: 100;
+}
+.row {
+  font-weight: bold;
+}
+.dateTime {
+  font-style: italic;
+}
+.weekday {
+  font-style: italic;
+}
+.card-title {
+  font-style: italic;
+}
+.weather-app {
+  border: 1px solid #dadde1;
+  background-image: url(images/Weather.jpg);
+  margin: 20px auto;
+  padding: 15px;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  border-radius: 10px;
+}
