@@ -9,8 +9,12 @@ h1 {
   text-transform: capitalize;
 }
 footer {
+  text-align: center;
+  font-style: italic;
+  text-decoration: none;
+  color: #eac100;
+  margin: 0px;
   display: block;
-  margin: 0;
 }
 .air {
   text-transform: capitalize;
