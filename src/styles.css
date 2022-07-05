@@ -41,7 +41,7 @@ footer {
 }
 .weather-app {
   border: 1px solid #dadde1;
-  background-image: url("images/Weather.jpg");
+  background-image: url("src/Weather.jpg");
   margin: 20px auto;
   padding: 15px;
   background-repeat: no-repeat;
