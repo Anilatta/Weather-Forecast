@@ -80,7 +80,7 @@ city.addEventListener("click", searchNewCity);
 function showCurrentData(response) {
   let temperature = Math.round(response.data.main.temp);
   let nowTemp = document.querySelector("#nowTemp");
-  nowTemp.innerHTML = `${temperature}`;
+  nowTemp.innerHTML = `${temperature}°C`;
   let outside = document.querySelector("#outside");
   outside.innerHTML = `${response.data.weather[0].main}`;
 
