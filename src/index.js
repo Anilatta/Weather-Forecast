@@ -49,6 +49,12 @@ function showData(response) {
   nowTemp.innerHTML = `${temperature}°C`;
   let outside = document.querySelector("#outside");
   outside.innerHTML = `${response.data.weather[0].main}`;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
@@ -93,6 +99,12 @@ function showCurrentData(response) {
   wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
   let city = document.querySelector("#citySearch");
   city.innerHTML = `${response.data.name}`;
+  let iconElement = document.querySelector("#icon");
+  iconElement.setAttribute(
+    "src",
+    `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
+  );
+  iconElement.setAttribute("alt", response.data.weather[0].description);
 }
 function showCurrentCity(position) {
   let lat = position.coords.latitude;
