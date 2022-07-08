@@ -54,7 +54,7 @@ footer {
   border-radius: 10px;
 }
 .units {
-  color: #212121;
+  color: #9818d6;
   font-size: 28px;
   line-height: 36px;
   font-weight: 400;
@@ -62,8 +62,11 @@ footer {
   line-height: 1;
   text-decoration: none;
 }
+a {
+  text-decoration: none;
+}
 .active {
-  color: black;
+  color: #9818d6;
   cursor: default;
 }
 .active:hover {
