@@ -42,11 +42,11 @@ let todayDate = document.querySelector("#todayDate");
 todayDate.innerHTML = `${today}/${month}`;
 
 function showData(response) {
-  console.log(response.data);
   let temperature = Math.round(response.data.main.temp);
-  console.log(temperature);
+  celciusTemp = response.data.main.temp;
+
   let nowTemp = document.querySelector("#nowTemp");
-  nowTemp.innerHTML = `${temperature}°C`;
+  nowTemp.innerHTML = `${temperature}`;
   let outside = document.querySelector("#outside");
   outside.innerHTML = `${response.data.weather[0].main}`;
   let iconElement = document.querySelector("#icon");
@@ -86,7 +86,8 @@ city.addEventListener("click", searchNewCity);
 function showCurrentData(response) {
   let temperature = Math.round(response.data.main.temp);
   let nowTemp = document.querySelector("#nowTemp");
-  nowTemp.innerHTML = `${temperature}°C`;
+  nowTemp.innerHTML = `${temperature}`;
+  celciusTemp = response.data.main.temp;
   let outside = document.querySelector("#outside");
   outside.innerHTML = `${response.data.weather[0].main}`;
 
@@ -121,3 +122,23 @@ function getCurrentPosition(event) {
 
 let currentCity = document.querySelector("#current-location");
 currentCity.addEventListener("click", getCurrentPosition);
+function showFahrenheitTemp(event) {
+  event.preventDefault();
+  let fahrenheitTemp = Math.round((celciusTemp * 9) / 5 + 32);
+  celciustLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let temperatureElement = document.querySelector("#nowTemp");
+  temperatureElement.innerHTML = fahrenheitTemp;
+}
+function showCelciusTemp(event) {
+  event.preventDefault();
+  celciustLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#nowTemp");
+  temperatureElement.innerHTML = Math.round(celciusTemp);
+}
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", showFahrenheitTemp);
+let celciustLink = document.querySelector("#celcius-link");
+celciustLink.addEventListener("click", showCelciusTemp);
+let celciusTemp = null;
