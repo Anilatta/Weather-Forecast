@@ -142,36 +142,3 @@ fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 let celciustLink = document.querySelector("#celcius-link");
 celciustLink.addEventListener("click", showCelciusTemp);
 let celciusTemp = null;
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<div class="row">`;
-  let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-<div class="col-sm-2">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    ${day} <br />
-                    📅03/06
-                  </h5>
-                  <p class="card-text">
-                    27°/14°C
-                    <br />
-                    <img
-                      src="https://img.icons8.com/color/48/undefined/chance-of-storm.png"
-                    />
-                  </p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-            </div>`;
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
-
-displayForecast();
