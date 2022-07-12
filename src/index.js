@@ -74,7 +74,7 @@ function searchNewCity(event) {
   } else {
     newCity.innerHTML = "😢";
   }
-  let apiKey = "5cd2f71c0623efb5f800f92f1a7eaa5f";
+  let apiKey = "9583d26359a57772b18997e04cbea4af";
   let cityN = `${searchInput.value}`;
   let units = "metric";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityN}&appid=${apiKey}&units=${units}`;
@@ -141,4 +141,35 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 let celciustLink = document.querySelector("#celcius-link");
 celciustLink.addEventListener("click", showCelciusTemp);
-let celciusTemp = null;
+function displayForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  let daysF = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+  daysF.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+<div class="col-sm-2">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    ${day} <br />
+                    📅03/06
+                  </h5>
+                  <p class="card-text">
+                    27°/14°C
+                    <br />
+                    <img
+                      src="https://img.icons8.com/color/48/undefined/chance-of-storm.png"
+                    />
+                  </p>
+                  <a href="#" class="btn btn-primary">More Details</a>
+                </div>
+              </div>
+            </div>`;
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+displayForecast();
