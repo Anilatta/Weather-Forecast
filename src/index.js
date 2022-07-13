@@ -40,7 +40,57 @@ date.innerHTML = `${day} ${hours}:${minutes}`;
 
 let todayDate = document.querySelector("#todayDate");
 todayDate.innerHTML = `${today}/${month}`;
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
+  return days[day];
+}
+
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
+<div class="col-2">
+                                  <div class="forecast-time">${formatDay(
+                                    forecastDay.dt
+                                  )}</div>
+                  <img
+                    src="http://openweathermap.org/img/wn/${
+                      forecastDay.weather[0].icon
+                    }@2x.png"
+                    alt=""
+                    width="42"
+                  />
+                  <canvas width="38" height="38"></canvas>
+                  <div class="forecast-temperature">
+                    <span class="forecast-temperature-max">${Math.round(
+                      forecastDay.temp.max
+                    )}°</span
+                    ><span class="forecast-temperature-min">${Math.round(
+                      forecastDay.temp.min
+                    )}°</span>
+                  </div>
+                </div>
+                `;
+    }
+  });
+
+  forecastHTML = forecastHTML + `</div>`;
+  forecastElement.innerHTML = forecastHTML;
+}
+function getForecast(coordinates) {
+  let apiKey = "5cd2f71c0623efb5f800f92f1a7eaa5f";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 function showData(response) {
   let temperature = Math.round(response.data.main.temp);
   celciusTemp = response.data.main.temp;
@@ -63,6 +113,7 @@ function showData(response) {
   air.innerHTML = `Sky: ${response.data.weather[0].description}`;
   let wind = document.querySelector("#wind");
   wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  getForecast(response.data.coord);
 }
 
 function searchNewCity(event) {
@@ -106,6 +157,7 @@ function showCurrentData(response) {
     `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`
   );
   iconElement.setAttribute("alt", response.data.weather[0].description);
+  getForecast(response.data.coord);
 }
 function showCurrentCity(position) {
   let lat = position.coords.latitude;
@@ -122,6 +174,7 @@ function getCurrentPosition(event) {
 
 let currentCity = document.querySelector("#current-location");
 currentCity.addEventListener("click", getCurrentPosition);
+
 function showFahrenheitTemp(event) {
   event.preventDefault();
   let fahrenheitTemp = Math.round((celciusTemp * 9) / 5 + 32);
@@ -141,35 +194,3 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 let celciustLink = document.querySelector("#celcius-link");
 celciustLink.addEventListener("click", showCelciusTemp);
-function displayForecast() {
-  let forecastElement = document.querySelector("#forecast");
-  let forecastHTML = `<div class="row">`;
-  let daysF = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
-  daysF.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
-<div class="col-sm-2">
-              <div class="card">
-                <div class="card-body">
-                  <h5 class="card-title">
-                    ${day} <br />
-                    📅03/06
-                  </h5>
-                  <p class="card-text">
-                    27°/14°C
-                    <br />
-                    <img
-                      src="https://img.icons8.com/color/48/undefined/chance-of-storm.png"
-                    />
-                  </p>
-                  <a href="#" class="btn btn-primary">More Details</a>
-                </div>
-              </div>
-            </div>`;
-  });
-
-  forecastHTML = forecastHTML + `</div>`;
-  forecastElement.innerHTML = forecastHTML;
-}
-displayForecast();
