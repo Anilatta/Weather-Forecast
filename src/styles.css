@@ -36,8 +36,10 @@ footer {
 .weekday {
   font-style: italic;
 }
-.card-title {
+.card {
   font-style: italic;
+  background-color: transparent;
+  text-align: center;
 }
 .weather-app {
   border: 1px solid #dadde1;
