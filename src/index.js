@@ -150,7 +150,7 @@ function showCurrentData(response) {
   let air = document.querySelector("#air");
   air.innerHTML = `Description: ${response.data.weather[0].description}`;
   let wind = document.querySelector("#wind");
-  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/s`;
   let city = document.querySelector("#citySearch");
   city.innerHTML = `${response.data.name}`;
   let iconElement = document.querySelector("#icon");

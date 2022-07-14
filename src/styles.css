@@ -74,3 +74,6 @@ a {
 .active:hover {
   text-decoration: none;
 }
+.forecast-temperature {
+  color: #9818d6;
+}
