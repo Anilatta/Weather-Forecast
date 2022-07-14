@@ -40,10 +40,11 @@ date.innerHTML = `${day} ${hours}:${minutes}`;
 
 let todayDate = document.querySelector("#todayDate");
 todayDate.innerHTML = `${today}/${month}`;
+
 function formatDay(timestamp) {
   let date = new Date(timestamp * 1000);
   let day = date.getDay();
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  let days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
   return days[day];
 }
@@ -69,16 +70,16 @@ function displayForecast(response) {
                       forecastDay.weather[0].icon
                     }@2x.png"
                     alt=""
-                    width="42"
+                    width="55"
                   />
                   <canvas width="38" height="38"></canvas>
                   <div class="forecast-temperature">
                     <span class="forecast-temperature-max">${Math.round(
                       forecastDay.temp.max
-                    )}°|</span
+                    )}°<small>C</small>|</span
                     ><span class="forecast-temperature-min">${Math.round(
                       forecastDay.temp.min
-                    )}°</span>
+                    )}°<small>C</small></span>
                   </div>
                 </div>
                  </div>
@@ -112,29 +113,26 @@ function showData(response) {
 
   let humidity = document.querySelector("#humidity");
   humidity.innerHTML = `Humidity: ${response.data.main.humidity}%`;
-
+  let cityElement = document.querySelector("#citySearch");
+  cityElement.innerHTML = response.data.name;
   let air = document.querySelector("#air");
   air.innerHTML = `Sky: ${response.data.weather[0].description}`;
   let wind = document.querySelector("#wind");
-  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} km/h`;
+  wind.innerHTML = `Wind: ${Math.round(response.data.wind.speed)} m/s`;
   getForecast(response.data.coord);
+}
+function search(city) {
+  let apiKey = "5cd2f71c0623efb5f800f92f1a7eaa5f";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(showData);
 }
 
 function searchNewCity(event) {
   event.preventDefault();
-  let searchInput = document.querySelector("#enter");
-  let newCity = document.querySelector("#citySearch");
-  if (searchInput.value) {
-    newCity.innerHTML = `${searchInput.value}`;
-  } else {
-    newCity.innerHTML = "😢";
-  }
-  let apiKey = "9583d26359a57772b18997e04cbea4af";
-  let cityN = `${searchInput.value}`;
-  let units = "metric";
-  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${cityN}&appid=${apiKey}&units=${units}`;
-  axios.get(apiUrl).then(showData);
+  let cityInputElement = document.querySelector("#enter");
+  search(cityInputElement.value);
 }
+
 let city = document.querySelector("#search-form");
 city.addEventListener("click", searchNewCity);
 
@@ -198,3 +196,4 @@ let fahrenheitLink = document.querySelector("#fahrenheit-link");
 fahrenheitLink.addEventListener("click", showFahrenheitTemp);
 let celciustLink = document.querySelector("#celcius-link");
 celciustLink.addEventListener("click", showCelciusTemp);
+search("Kyiv");
